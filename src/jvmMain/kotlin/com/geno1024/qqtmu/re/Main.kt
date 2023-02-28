@@ -7,15 +7,19 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.window.MenuBar
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
-import com.geno1024.qqtmu.re.ds.IndexFile
-import java.io.File
 
 fun main() = application {
-    IndexFile.read(File("../installation-packages/Q/data/object.idx")).apply {
-    }
     Window(onCloseRequest = ::exitApplication, title = "QQTang Resource Editor") {
+        MenuBar {
+            Menu("File") {
+                Menu("New...") {}
+                Menu("Open...") {}
+                Menu("Save...") {}
+            }
+        }
         var text by remember { mutableStateOf("Hello, World!") }
 
         MaterialTheme {
