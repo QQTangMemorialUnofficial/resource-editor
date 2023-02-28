@@ -1,6 +1,6 @@
 package com.geno1024.qqtmu.re.ds
 
-import com.geno1024.qqtmu.re.util.Conversions.toInt32
+import com.geno1024.qqtmu.re.util.Conversions.readInt32
 import java.io.File
 import java.io.FileInputStream
 
@@ -25,10 +25,10 @@ class IndexFile
             return IndexFile().apply {
                 stream = file.inputStream()
 
-                magic = stream.readNBytes(4).toInt32()
-                entrySize = stream.readNBytes(4).toInt32()
-                fileTableOffset = stream.readNBytes(4).toInt32().apply(::println)
-                fileTableSize = stream.readNBytes(4).toInt32().apply(::println)
+                magic = stream.readInt32()
+                entrySize = stream.readInt32()
+                fileTableOffset = stream.readInt32().apply(::println)
+                fileTableSize = stream.readInt32().apply(::println)
             }
         }
     }

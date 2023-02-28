@@ -1,8 +1,12 @@
 package com.geno1024.qqtmu.re.util
 
+import java.io.InputStream
+
 object Conversions
 {
-    fun ByteArray.toInt32(): Int = (this[0].toUByte().toUInt() + (this[1].toUByte().toUInt() shl 8) + (this[2].toUByte().toUInt() shl 16) + (this[3].toUByte().toUInt() shl 24)).toInt()
+    fun InputStream.readInt32(): Int = read() + (read() shl 8) + (read() shl 16) + (read() shl 24)
 
-    fun ByteArray.toInt16(): Int = (this[0].toUByte().toUInt() + (this[1].toUByte().toUInt() shl 8)).toInt()
+    fun InputStream.readInt16(): Int = read() + (read() shl 8)
+
+    fun InputStream.readFloat32(): Float = Float.fromBits(readInt32())
 }
